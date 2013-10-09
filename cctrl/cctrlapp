@@ -423,6 +423,40 @@ def parse_cmdline(app, api):
     )
     open_subparser.set_defaults(func=app.open)
 
+    pushdeploy_subparser = subparsers.add_parser(
+        'pushdeploy',
+        help="pushes and deploys local changes"
+    )
+    pushdeploy_subparser.add_argument(
+        'source',
+        nargs='?',
+        help='path to local branch')
+    pushdeploy_subparser.add_argument(
+        '--containers', '--min',
+        type=int,
+        metavar='NUM',
+        help="number of containers")
+    pushdeploy_subparser.add_argument(
+        '--size', '--max',
+        type=int,
+        help="container memory size in units of 128MB")
+    pushdeploy_subparser.add_argument(
+        '--memory',
+        help="container size in MB, --memory=X*128 maps to --size=X")
+    pushdeploy_subparser.add_argument(
+        '--stack',
+        action="store",
+        nargs='?',
+        default=None,
+        dest="stack",
+        help="desired stack name")
+    pushdeploy_subparser.add_argument(
+        'version',
+        nargs='?',
+        default=-1,
+        help='optionally accepts a version')
+    pushdeploy_subparser.set_defaults(func=app.push_deploy)
+
     args = parser.parse_args()
 
     common.run(args, api)

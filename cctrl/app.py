@@ -866,6 +866,16 @@ class AppController():
             check_call(cmd)
         except CalledProcessError, e:
             print str(e)
+            return False
+        return True
+
+    def push_deploy(self, args):
+        print('pushing...')
+        push_succeeded = self.push(args)
+
+        if push_succeeded:
+            print('deploying...')
+            self.deploy(args)
 
     def parse_app_deployment_name(self, name):
         match = re.match(
