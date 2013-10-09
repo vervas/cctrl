@@ -131,7 +131,6 @@ class AppController():
             Creates a new application.
         """
         try:
-            #noinspection PyTupleAssignmentBalance
             app_name, deployment_name = self.parse_app_deployment_name(args.name)
         except ParseAppDeploymentName:
             raise InputErrorException('InvalidApplicationName')
@@ -190,7 +189,6 @@ class AppController():
             to delete the app which is a rather bad user experience.
         """
         if self.api.check_token():
-            #noinspection PyTupleAssignmentBalance
             app_name, deployment_name = self.parse_app_deployment_name(args.name)
             if not self.does_app_exist(app_name):
                 raise InputErrorException('WrongApplication')
@@ -341,7 +339,6 @@ class AppController():
             other arguments were passed at the command line.
         """
         try:
-            #noinspection PyTupleAssignmentBalance
             app_name, deployment_name = self.parse_app_deployment_name(args.name)
         except ParseAppDeploymentName:
             raise InputErrorException('InvalidApplicationName')
@@ -395,7 +392,6 @@ class AppController():
         """
             Undeploys the deployment, deletes the database and files.
         """
-        #noinspection PyTupleAssignmentBalance
         app_name, deployment_name = self.parse_app_deployment_name(args.name)
         if not deployment_name:
             raise InputErrorException('NoDeployment')
@@ -420,7 +416,6 @@ class AppController():
         """
             Adds the given alias to the deployment.
         """
-        #noinspection PyTupleAssignmentBalance
         app_name, deployment_name = self.parse_app_deployment_name(args.name)
         if not deployment_name:
             raise InputErrorException('NoDeployment')
@@ -433,7 +428,6 @@ class AppController():
         """
             Shows the details of an alias.
         """
-        #noinspection PyTupleAssignmentBalance
         app_name, deployment_name = self.parse_app_deployment_name(args.name)
         if not deployment_name:
             raise InputErrorException('NoDeployment')
@@ -457,7 +451,6 @@ class AppController():
         """
             Removes an alias form a deployment.
         """
-        #noinspection PyTupleAssignmentBalance
         app_name, deployment_name = self.parse_app_deployment_name(args.name)
         if not deployment_name:
             raise InputErrorException('NoDeployment')
@@ -473,7 +466,6 @@ class AppController():
         """
             Adds the given worker to the deployment.
         """
-        #noinspection PyTupleAssignmentBalance
         app_name, deployment_name = self.parse_app_deployment_name(args.name)
         if args.size:
             size = args.size
@@ -509,7 +501,6 @@ class AppController():
         """
             Shows the details of an worker.
         """
-        #noinspection PyTupleAssignmentBalance
         app_name, deployment_name = self.parse_app_deployment_name(args.name)
         if not deployment_name:
             raise InputErrorException('NoDeployment')
@@ -533,7 +524,6 @@ class AppController():
         """
             Removes an worker form a deployment.
         """
-        #noinspection PyTupleAssignmentBalance
         app_name, deployment_name = self.parse_app_deployment_name(args.name)
         if not deployment_name:
             raise InputErrorException('NoDeployment')
@@ -547,7 +537,6 @@ class AppController():
         """
             Adds the given worker to the deployment.
         """
-        #noinspection PyTupleAssignmentBalance
         app_name, deployment_name = self.parse_app_deployment_name(args.name)
         if not deployment_name:
             raise InputErrorException('NoDeployment')
@@ -563,7 +552,6 @@ class AppController():
         """
             Shows the details of an worker.
         """
-        #noinspection PyTupleAssignmentBalance
         app_name, deployment_name = self.parse_app_deployment_name(args.name)
         if not deployment_name:
             raise InputErrorException('NoDeployment')
@@ -587,7 +575,6 @@ class AppController():
         """
             Removes an worker form a deployment.
         """
-        #noinspection PyTupleAssignmentBalance
         app_name, deployment_name = self.parse_app_deployment_name(args.name)
         if not deployment_name:
             raise InputErrorException('NoDeployment')
@@ -597,7 +584,6 @@ class AppController():
             raise InputErrorException('NoSuchCronJob')
         return True
 
-    #noinspection PyUnusedLocal
     def listAddons(self, args):
         """
             Returns a list of all available addons
@@ -610,7 +596,6 @@ class AppController():
         """
             Adds the given addon to the deployment.
         """
-        #noinspection PyTupleAssignmentBalance
         app_name, deployment_name = self.parse_app_deployment_name(args.name)
         if not deployment_name:
             raise InputErrorException('NoDeployment')
@@ -635,7 +620,6 @@ class AppController():
         """
             Shows the details of an addon.
         """
-        #noinspection PyTupleAssignmentBalance
         app_name, deployment_name = self.parse_app_deployment_name(args.name)
         if not deployment_name:
             raise InputErrorException('NoDeployment')
@@ -687,7 +671,6 @@ class AppController():
                 return True
 
     def updateAddon(self, args):
-        #noinspection PyTupleAssignmentBalance
         app_name, deployment_name = self.parse_app_deployment_name(args.name)
         if not deployment_name:
             raise InputErrorException('NoDeployment')
@@ -706,7 +689,6 @@ class AppController():
         """
             Removes an addon form a deployment.
         """
-        #noinspection PyTupleAssignmentBalance
         app_name, deployment_name = self.parse_app_deployment_name(args.name)
         if not deployment_name:
             raise InputErrorException('NoDeployment')
@@ -736,8 +718,7 @@ class AppController():
         """
             Add a user specified by the e-mail address to an application.
         """
-        #noinspection PyTupleAssignmentBalance
-        app_name, deployment_name = self.parse_app_deployment_name(args.name)  # @UnusedVariable
+        app_name, deployment_name = self.parse_app_deployment_name(args.name)
         try:
             if deployment_name:
                 self.api.create_deployment_user(app_name, deployment_name, args.email, args.role)
@@ -753,8 +734,7 @@ class AppController():
         """
             Remove a user specified by the user name or email address from an application.
         """
-        #noinspection PyTupleAssignmentBalance
-        app_name, deployment_name = self.parse_app_deployment_name(args.name)  # @UnusedVariable
+        app_name, deployment_name = self.parse_app_deployment_name(args.name)
         if '@' in args.username:
             if deployment_name:
                 users = self.api.read_deployment_users(app_name, deployment_name)
@@ -783,13 +763,11 @@ class AppController():
         """
         Show the log.
         """
-        #noinspection PyTupleAssignmentBalance
         app_name, deployment_name = self.parse_app_deployment_name(args.name)
         if not deployment_name:
             raise InputErrorException('NoDeployment')
         last_time = None
         while True:
-            #noinspection PyUnusedLocal
             logEntries = []
             try:
                 logEntries = self.api.read_log(
@@ -835,14 +813,12 @@ class AppController():
         if not check_installed_rcs('bzr') and not check_installed_rcs('git'):
             raise InputErrorException('NeitherBazaarNorGitFound')
 
-        #noinspection PyTupleAssignmentBalance
         app_name, deployment_name = self.parse_app_deployment_name(args.name)
         try:
             if deployment_name == '':
                 push_deployment_name = 'default'
             else:
                 push_deployment_name = deployment_name
-            #noinspection PyUnusedLocal
             deployment = self.api.read_deployment(
                 app_name,
                 push_deployment_name)
