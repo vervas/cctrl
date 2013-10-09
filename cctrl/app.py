@@ -627,6 +627,8 @@ class AppController():
             if 'This is not a valid addon name' in str(e):
                 raise InputErrorException('InvalidAddon')
             raise
+        except ForbiddenError:
+            raise InputErrorException('ForbiddenAddon')
         return True
 
     def showAddon(self, args):
