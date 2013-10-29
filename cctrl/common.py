@@ -59,7 +59,7 @@ def init_api():
     try:
         api_url = os.environ.pop('CCTRL_API_URL')
     except KeyError:
-        pass
+        cclib.API_URL = 'https://api.whitelabelpaas.com'
     else:
         cclib.API_URL = api_url
 
